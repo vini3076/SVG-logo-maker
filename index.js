@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const {Circle, Triangle, Square} = require('./lib/shapes');
+const { Circle, Triangle, Rectangle } = require('./lib/shapes.js');
 const fs = require('fs');
 
 
@@ -24,7 +24,7 @@ function init (){
                 type: 'list',
                 name: 'shape',
                 message: 'What shape do you want?',
-                choices: ['Circle', 'Square', 'Triangle']
+                choices: ['Circle', 'Rectangle', 'Triangle']
             },
             {
                 type: 'input',
@@ -40,11 +40,22 @@ function init (){
 
     ).then((answers) => {
         console.log (answers);
+        switch(answers.shape){
+            case 'Circle':
+            const circle = new Circle(answers.text, answers.shape, answers.shapeColor, answers.textColor);
+            break;
 
-    })
+            case 'Rectangle':
+            const rectangle = new Rectangle(answers.text, answers.shape, answers.shapeColor, answers.textColor);
+            break;
 
-    
+            case 'Triangle':
+            const triangle = new Triangle(answers.text, answers.shape, answers.shapeColor, answers.textColor);
+            break;
 
-    
+
+        }
+
+    }) 
 }
 init();
