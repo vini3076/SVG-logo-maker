@@ -29,7 +29,7 @@ function init (){
             {
                 type: 'input',
                 name: 'shapeColor',
-                message: 'Enter the color keyword or hexadecimal number for the shape color (default Black)?',
+                message: 'Enter the color keyword or hexadecimal number for the shape color (default Black).',
                 
             },
             {
