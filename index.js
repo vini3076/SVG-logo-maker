@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const { Circle, Triangle, Rectangle } = require('./lib/shapes.js');
+const { Circle,Rectangle, Triangle } = require('./lib/shapes.js');
 const fs = require('fs');
 
 
@@ -29,28 +29,47 @@ function init (){
             {
                 type: 'input',
                 name: 'shapeColor',
-                message: 'What color do you want for the shape?',
+                message: 'Enter the color keyword or hexadecimal number for the shape color (default Black)?',
+                
             },
             {
                 type: 'input',
                 name: 'textColor',
-                message: 'What color do want for the text?',
+                message: 'Enter the color keyword or hexadecimal number for the text color(default White)?',
+                
             }
         ]
 
     ).then((answers) => {
         console.log (answers);
+        let renderLogo
+        if (answers.shapeColor == null || answers.shapeColor==''){
+            answers.shapeColor = 'black';
+        }
+
+        if (answers.textColor == null || answers.textColor==''){
+            answers.textColor = 'white';
+        }
         switch(answers.shape){
             case 'Circle':
             const circle = new Circle(answers.text, answers.shape, answers.shapeColor, answers.textColor);
+            renderLogo = circle.render();
+            console.log(renderLogo)
+            fs.writeFileSync('./examples/logo.svg', renderLogo);
             break;
 
             case 'Rectangle':
             const rectangle = new Rectangle(answers.text, answers.shape, answers.shapeColor, answers.textColor);
+            renderLogo = rectangle.render();
+            console.log(renderLogo)
+            fs.writeFileSync('./examples/logo.svg', renderLogo);
             break;
 
             case 'Triangle':
             const triangle = new Triangle(answers.text, answers.shape, answers.shapeColor, answers.textColor);
+            renderLogo = triangle.render();
+            console.log(renderLogo)
+            fs.writeFileSync('./examples/logo.svg', renderLogo);
             break;
 
 
